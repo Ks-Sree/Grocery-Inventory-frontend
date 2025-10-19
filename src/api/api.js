@@ -1,11 +1,11 @@
 const API_URL = import.meta.env.VITE_API_URL || "https://grocery-inventory-xy29.onrender.com";
-
-const BASE_URL = `${API_BASE.replace(/\/$/, "")}/groceries`;
+const BASE_URL = `${API_URL.replace(/\/$/, "")}/groceries`;
 
 export const getItems = async () => {
   const res = await fetch(BASE_URL);
   return res.json();
 };
+
 export const addItem = async (item) => {
   const res = await fetch(BASE_URL, {
     method: "POST",
