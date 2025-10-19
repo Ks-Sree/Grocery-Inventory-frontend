@@ -1,0 +1,28 @@
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const BASE_URL = `${API_BASE.replace(/\/$/, "")}/groceries`;
+
+export const getItems = async () => {
+  const res = await fetch(BASE_URL);
+  return res.json();
+};
+export const addItem = async (item) => {
+  const res = await fetch(BASE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(item),
+  });
+  return res.json();
+};
+
+export const updateItem = async (id, item) => {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(item),
+  });
+  return res.json();
+};
+
+export const deleteItem = async (id) => {
+  await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
+};
